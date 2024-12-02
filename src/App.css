@@ -38,7 +38,9 @@
   --app-bg: #313e51;
 
   /* Dark mode background images */
-
+p{
+  color: white;
+}
   --bg-desktop: url("../public/assets/images/pattern-background-desktop-dark.svg");
   --bg-tablet: url("../public/assets/images/pattern-background-tablet-dark.svg");
   --bg-mobile: url("../public/assets/images/pattern-background-mobile-dark.svg");

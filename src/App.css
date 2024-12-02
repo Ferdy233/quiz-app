@@ -71,6 +71,7 @@ p{
 }
 
 .display,
+.heading--lg--bold,
 .heading--m,
 .heading--s {
   font-weight: 500;
@@ -95,6 +96,7 @@ p{
   font-size: clamp(2rem, 1.6rem + 2vw, 4rem);
 }
 
+.heading--lg,
 .body--m,
 .body--s {
   font-weight: 400;

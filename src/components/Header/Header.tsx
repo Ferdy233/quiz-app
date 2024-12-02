@@ -1,6 +1,7 @@
 import lightModeIcon from "/assets/images/icon-sun-dark.svg";
 import DarkModeIcon from "/assets/images/icon-moon-dark.svg";
 import "./header.css";
+import { useEffect, useState } from "react";
 
 type HeaderProps = {
   quizTopicSelected: {
@@ -15,9 +16,15 @@ type HeaderProps = {
 };
 
 const Header = ({ quizTopicSelected }: HeaderProps) => {
+  const [theme, setTheme] = useState<string>(() => sessionStorage.getItem("theme") || "")
   const handleMode = () => {
-    document.body.classList.toggle("dark-mode");
+    setTheme(prev => prev === "dark" ? "" : "dark")
   };
+  
+  useEffect(() => {
+    document.body.className=theme;
+    sessionStorage.setItem("theme", theme)
+  }, [theme])
 
   return (
     <header className="header">
@@ -35,7 +42,7 @@ const Header = ({ quizTopicSelected }: HeaderProps) => {
         <img className="light-icon" src={lightModeIcon} aria-hidden="true" />
         <div className="switch">
           <label>
-            <input onClick={handleMode} id="toggleMode" type="checkbox" />
+            <input onChange={handleMode} id="toggleMode" type="checkbox" />
             <span className="slider slider--round"></span>
           </label>
         </div>

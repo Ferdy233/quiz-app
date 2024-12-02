@@ -18,7 +18,7 @@ type HeaderProps = {
 const Header = ({ quizTopicSelected }: HeaderProps) => {
   const [theme, setTheme] = useState<string>(() => sessionStorage.getItem("theme") || "")
   const handleMode = () => {
-    setTheme(prev => prev === "dark" ? "" : "dark")
+    setTheme(prev => prev === "dark-mode" ? "" : "dark-mode")
   };
   
   useEffect(() => {

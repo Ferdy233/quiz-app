@@ -21,9 +21,9 @@
 
   /* Background image variables */
 
-  --bg-desktop: url("./assets/images/pattern-background-desktop-light.svg");
-  --bg-tablet: url("./assets/images/pattern-background-tablet-light.svg");
-  --bg-mobile: url("./assets/images/pattern-background-mobile-light.svg");
+  --bg-desktop: url("../public/assets/images/pattern-background-desktop-light.svg");
+  --bg-tablet: url("../public/assets/images/pattern-background-tablet-light.svg");
+  --bg-mobile: url("../public/assets/images/pattern-background-mobile-light.svg");
 
   /* Box shadow */
 
@@ -39,9 +39,9 @@
 
   /* Dark mode background images */
 
-  --bg-desktop: url("./assets/images/pattern-background-desktop-dark.svg");
-  --bg-tablet: url("./assets/images/pattern-background-tablet-dark.svg");
-  --bg-mobile: url("./assets/images/pattern-background-mobile-dark.svg");
+  --bg-desktop: url("../public/assets/images/pattern-background-desktop-dark.svg");
+  --bg-tablet: url("../public/assets/images/pattern-background-tablet-dark.svg");
+  --bg-mobile: url("../public/assets/images/pattern-background-mobile-dark.svg");
 
   --box-shadow: none;
 }

@@ -104,7 +104,7 @@ const Quiz = ({
           <div className="answers">{answerOptions}</div>
           {hideSubmit ? null : (
             <button className="btn heading--s" onClick={handleSubmit}>
-              Submit Question
+              Submit Answer
             </button>
           )}
           {chosenAnswer &&

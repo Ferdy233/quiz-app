@@ -39,14 +39,15 @@ const Header = ({ quizTopicSelected }: HeaderProps) => {
         </div>
       )}
       <div className="theme">
-        <img className="light-icon" src={lightModeIcon} aria-hidden="true" />
+      <img className="dark-icon" src={DarkModeIcon} aria-hidden="true" />
+        
         <div className="switch">
           <label>
             <input onChange={handleMode} id="toggleMode" type="checkbox" />
             <span className="slider slider--round"></span>
           </label>
         </div>
-        <img className="dark-icon" src={DarkModeIcon} aria-hidden="true" />
+        <img className="light-icon" src={lightModeIcon} aria-hidden="true" />
       </div>
     </header>
   );

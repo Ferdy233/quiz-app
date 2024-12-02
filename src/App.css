@@ -96,7 +96,6 @@ p{
   font-size: clamp(2rem, 1.6rem + 2vw, 4rem);
 }
 
-.heading--lg,
 .body--m,
 .body--s {
   font-weight: 400;

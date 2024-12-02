@@ -45,7 +45,7 @@ const WelcomeScreen = ({
     return (
       <section className="welcome">
         <div className="welcome__message">
-          <h1 style={{ fontWeight: 'normal' }}className="welcome__title heading--lg">
+          <h1 className="welcome__title heading--lg">
             Welcome to the{" "}
             <span className="heading--lg--bold">Frontend Quiz!</span>
           </h1>

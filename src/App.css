@@ -251,7 +251,7 @@ main {
 
 @media only screen and (max-width: 750px) {
  
-  .welcome {
+.welcome {
     flex-direction: column;
       justify-content: center;
       width: 100%;
@@ -261,7 +261,7 @@ main {
 .welcome__message {
   margin-bottom: 2.5rem;
   display: flex;
-  flex-direction: column;
+ 
 }
 }
 

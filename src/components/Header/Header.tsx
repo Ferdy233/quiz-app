@@ -39,7 +39,7 @@ const Header = ({ quizTopicSelected }: HeaderProps) => {
         </div>
       )}
       <div className="theme">
-      <img className="dark-icon" src={DarkModeIcon} aria-hidden="true" />
+      <img className="light-icon" src={lightModeIcon} aria-hidden="true" />
         
         <div className="switch">
           <label>
@@ -47,7 +47,8 @@ const Header = ({ quizTopicSelected }: HeaderProps) => {
             <span className="slider slider--round"></span>
           </label>
         </div>
-        <img className="light-icon" src={lightModeIcon} aria-hidden="true" />
+        <img className="dark-icon" src={DarkModeIcon} aria-hidden="true" />
+      
       </div>
     </header>
   );

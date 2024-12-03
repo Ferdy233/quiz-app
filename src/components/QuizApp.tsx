@@ -1,92 +1,128 @@
 // src/QuizApp.tsx
-import { useState } from "react";
-import Quiz from "./Quiz/Quiz";
-import QuizResults from "./QuizResults/QuizResults";
-import { Topic } from "../types";
-import "../App.css";
 
-function QuizApp({quizTopic, setQuizTopic}: {quizTopic: Topic, setQuizTopic: (value: Topic | null) => void}) {
+// Importing necessary modules, components, and styles
+import { useState } from "react"; // React hook for state management
+import Quiz from "./Quiz/Quiz"; // Quiz component for displaying quiz questions
+import QuizResults from "./QuizResults/QuizResults"; // Component to display quiz results
+import { Topic } from "../types"; // TypeScript type for the quiz topic
+import "../App.css"; // App-wide styles
 
-  const [question, setQuestion] = useState<number>(Number(sessionStorage.getItem("question")) || 0);
+// Defining the QuizApp component with props
+function QuizApp({
+  quizTopic, // Selected quiz topic
+  setQuizTopic, // Function to reset the quiz topic
+}: {
+  quizTopic: Topic; // Type of the selected quiz topic
+  setQuizTopic: (value: Topic | null) => void; // Function to reset the quiz topic
+}) {
+  // State for tracking the current question index
+  const [question, setQuestion] = useState<number>(
+    Number(sessionStorage.getItem("question")) || 0
+  );
+
+  // State for tracking the user's chosen answer
   const [chosenAnswer, setChosenAnswer] = useState<string | null>(null);
-  const [score, setScore] = useState<number>(Number(sessionStorage.getItem("score")) || 0);
-  const [gameEnded, setGameEnded] = useState<boolean>(sessionStorage.getItem("gameEnded") ? true : false);
+
+  // State for tracking the user's score
+  const [score, setScore] = useState<number>(
+    Number(sessionStorage.getItem("score")) || 0
+  );
+
+  // State for tracking whether the game has ended
+  const [gameEnded, setGameEnded] = useState<boolean>(
+    sessionStorage.getItem("gameEnded") ? true : false
+  );
+
+  // State for tracking if an error message should be displayed
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
+
+  // State for tracking whether the submit button should be hidden
   const [hideSubmit, setHideSubmit] = useState<boolean>(false);
 
-  const totalQuestions = quizTopic?.questions.length;
-  const currentQuestion = quizTopic?.questions[question].question;
-  const answer = quizTopic?.questions[question].answer;
-  const options = quizTopic?.questions[question].options;
+  // Derived variables for easier access
+  const totalQuestions = quizTopic?.questions.length; // Total number of questions in the quiz
+  const currentQuestion = quizTopic?.questions[question].question; // Current question text
+  const answer = quizTopic?.questions[question].answer; // Correct answer for the current question
+  const options = quizTopic?.questions[question].options; // Answer options for the current question
 
+  // Function to move to the next question
   const updateQuestion = () => {
     if (question + 1 !== totalQuestions && hideSubmit) {
       setQuestion(question + 1);
-      setChosenAnswer(null);
-      setHideSubmit(false);
+      setChosenAnswer(null); // Reset chosen answer for the next question
+      setHideSubmit(false); // Re-enable the submit button
     }
   };
 
+  // Function to update the chosen answer
   const updateChosenAnswer = (choice: string) => {
     if (!hideSubmit) {
-      setErrorMessage(false);
-      setChosenAnswer(choice);
+      setErrorMessage(false); // Clear any existing error messages
+      setChosenAnswer(choice); // Update the state with the chosen answer
     }
   };
 
+  // Function to handle the submit action
   const handleSubmit = () => {
-    updateScore();
+    updateScore(); // Update the score if the answer is correct
     if (chosenAnswer === null) {
-      setErrorMessage(true);
+      setErrorMessage(true); // Show error if no answer is chosen
     } else {
-      setHideSubmit(true);
+      setHideSubmit(true); // Disable the submit button after submission
     }
-    totalQuestions && question !== totalQuestions - 1 && sessionStorage.setItem("question", String(question + 1));
+    // Save the next question index in session storage
+    totalQuestions &&
+      question !== totalQuestions - 1 &&
+      sessionStorage.setItem("question", String(question + 1));
   };
 
-
+  // Function to update the score
   const updateScore = () => {
     if (chosenAnswer !== null && chosenAnswer === answer) {
-      sessionStorage.setItem("score", String(score + 1));
-      setScore(score + 1);
+      sessionStorage.setItem("score", String(score + 1)); // Save the updated score in session storage
+      setScore(score + 1); // Increment the score
     }
   };
 
+  // Function to handle the end of the quiz
   const handleEnd = () => {
-    sessionStorage.setItem("gameEnded", String(true));
-    setGameEnded(true);
+    sessionStorage.setItem("gameEnded", String(true)); // Save the game-ended state in session storage
+    setGameEnded(true); // Set the state to end the game
   };
 
+  // Rendering the component
   return (
     <>
-     
+      {/* Render the Quiz component if the game is not ended */}
       <Quiz
-        isGameEnded={gameEnded}
-        quizTopicSelected={quizTopic}
-        totalQuestions={totalQuestions}
-        questionPosition={question}
-        currentQuestion={currentQuestion}
-        chosenAnswer={chosenAnswer}
-        correctAnswer={answer}
-        errorMessage={errorMessage}
-        options={options}
-        updateQuestion={updateQuestion}
-        updateChosenAnswer={updateChosenAnswer}
-        handleSubmit={handleSubmit}
-        hideSubmit={hideSubmit}
-        handleEnd={handleEnd}
+        isGameEnded={gameEnded} // Whether the game has ended
+        quizTopicSelected={quizTopic} // Current quiz topic
+        totalQuestions={totalQuestions} // Total number of questions
+        questionPosition={question} // Current question index
+        currentQuestion={currentQuestion} // Text of the current question
+        chosenAnswer={chosenAnswer} // User's chosen answer
+        correctAnswer={answer} // Correct answer for the current question
+        errorMessage={errorMessage} // Whether to display an error message
+        options={options} // Answer options for the current question
+        updateQuestion={updateQuestion} // Function to move to the next question
+        updateChosenAnswer={updateChosenAnswer} // Function to update the chosen answer
+        handleSubmit={handleSubmit} // Function to handle answer submission
+        hideSubmit={hideSubmit} // Whether to hide the submit button
+        handleEnd={handleEnd} // Function to end the quiz
       />
+
+      {/* Render the QuizResults component if the game has ended */}
       {gameEnded && (
         <QuizResults
-          title={quizTopic.title}
-          icon={quizTopic.icon}
-          score={score}
-          totalQuestions={totalQuestions}
-          setQuizTopic={setQuizTopic}
+          title={quizTopic.title} // Title of the quiz topic
+          icon={quizTopic.icon} // Icon for the quiz topic
+          score={score} // User's final score
+          totalQuestions={totalQuestions} // Total number of questions
+          setQuizTopic={setQuizTopic} // Function to reset the quiz topic
         />
       )}
     </>
   );
 }
 
-export default QuizApp;
+export default QuizApp; // Exporting the QuizApp component for use in other parts of the app

@@ -1,32 +1,35 @@
-import errorIcon from "/assets/images/icon-error.svg";
-import successIcon from "/assets/images/icon-correct.svg";
-import "./quiz.css";
+// Import necessary assets and styles
+import errorIcon from "/assets/images/icon-error.svg"; // Icon for incorrect answers or errors
+import successIcon from "/assets/images/icon-correct.svg"; // Icon for correct answers
+import "./quiz.css"; // Import specific styles for the Quiz component
 
+// Define the prop types for the Quiz component
 type QuizProps = {
-  isGameEnded: boolean;
+  isGameEnded: boolean; // Indicates if the quiz has ended
   quizTopicSelected: {
-    title: string;
-    icon: string;
+    title: string; // Quiz topic title
+    icon: string; // Quiz topic icon
     questions: {
-      question: string;
-      options: string[];
-      answer: string;
+      question: string; // The quiz question
+      options: string[]; // Possible answers to the question
+      answer: string; // Correct answer
     }[];
   } | null;
-  totalQuestions: number | undefined;
-  questionPosition: number;
-  currentQuestion: string | undefined;
-  chosenAnswer: string | null;
-  correctAnswer: string | undefined;
-  errorMessage: boolean;
-  options: string[] | undefined;
-  updateQuestion: () => void; // Change this line
-  updateChosenAnswer: (choice: string) => void;
-  handleSubmit: () => void;
-  hideSubmit: boolean;
-  handleEnd: () => void;
+  totalQuestions: number | undefined; // Total number of questions in the quiz
+  questionPosition: number; // Current question index
+  currentQuestion: string | undefined; // The current question
+  chosenAnswer: string | null; // User's selected answer
+  correctAnswer: string | undefined; // Correct answer for the current question
+  errorMessage: boolean; // Whether an error message should be displayed
+  options: string[] | undefined; // List of answer options for the current question
+  updateQuestion: () => void; // Function to update to the next question
+  updateChosenAnswer: (choice: string) => void; // Function to update the chosen answer
+  handleSubmit: () => void; // Function to submit the selected answer
+  hideSubmit: boolean; // Whether the submit button is hidden
+  handleEnd: () => void; // Function to end the quiz
 };
 
+// The Quiz component
 const Quiz = ({
   isGameEnded,
   quizTopicSelected,
@@ -43,7 +46,7 @@ const Quiz = ({
   hideSubmit,
   handleEnd,
 }: QuizProps) => {
-  // Display all the available options to answer with
+  // Map each option to a styled answer card
   const answerOptions = options?.map((option: string, optionID: number) => {
     return (
       <div
@@ -63,10 +66,15 @@ const Quiz = ({
         onClick={() => updateChosenAnswer(option)}
         key={optionID}
       >
+        {/* Option label (A, B, C, D) */}
         <div className="answer__order heading--s">
           {["A", "B", "C", "D"][optionID]}
         </div>
+
+        {/* Option text */}
         <p className="answer__text heading--s">{option}</p>
+
+        {/* Correct and incorrect icons */}
         <img
           className="answer__correct-img"
           src={successIcon}
@@ -81,13 +89,14 @@ const Quiz = ({
     );
   });
 
-  // Calculate the width percentage for the progress bar
+  // Calculate the progress bar's width as a percentage
   const widthPercentage = (questionPosition / (totalQuestions ?? 1)) * 100 + 10;
 
-  // Only begin quiz if topic is selected
+  // Render null if no topic is selected or the quiz has ended
   {
     return quizTopicSelected === null || isGameEnded ? null : (
       <section className="quiz">
+        {/* Question and progress bar */}
         <div className="quiz__questions">
           <em className="question--position body--s">{`Question ${
             questionPosition + 1
@@ -100,13 +109,19 @@ const Quiz = ({
             ></div>
           </div>
         </div>
+
+        {/* Answer options and controls */}
         <div className="quiz__answers">
           <div className="answers">{answerOptions}</div>
-          {hideSubmit ? null : (
+
+          {/* Submit button */}
+          {!hideSubmit && (
             <button className="btn heading--s" onClick={handleSubmit}>
               Submit Answer
             </button>
           )}
+
+          {/* Next question button */}
           {chosenAnswer &&
           hideSubmit &&
           questionPosition + 1 !== totalQuestions ? (
@@ -115,11 +130,14 @@ const Quiz = ({
             </button>
           ) : null}
 
+          {/* End quiz button */}
           {questionPosition + 1 === totalQuestions && hideSubmit ? (
             <button className="btn heading--s" onClick={handleEnd}>
               End Quiz
             </button>
           ) : null}
+
+          {/* Error message for unselected answers */}
           {errorMessage ? (
             <div className="error--message">
               <img src={errorIcon} aria-hidden="true" />

@@ -1,3 +1,4 @@
+import React from 'react';
 import errorIcon from "/assets/images/icon-error.svg";
 import successIcon from "/assets/images/icon-correct.svg";
 import "./quiz.css";

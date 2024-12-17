@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import Quiz from "../src/components/Quiz/Quiz"; // Adjust the import based on your file structure

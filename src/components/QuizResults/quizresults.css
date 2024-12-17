@@ -1,0 +1,28 @@
+.results__title,
+.results__topic__title,
+.score {
+  color: var(--navy-blue);
+}
+
+.results,
+.results__topic {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.results {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: var(--white);
+}
+
+.results__topic {
+  gap: 1rem;
+}
+.score__total {
+  color: var(--grey);
+  margin-bottom: 0;
+}

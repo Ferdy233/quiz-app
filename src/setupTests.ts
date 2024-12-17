@@ -1,0 +1,1 @@
+import '@testing-library/jest-dom/extend-expect'; // Provides additional matchers for Jest

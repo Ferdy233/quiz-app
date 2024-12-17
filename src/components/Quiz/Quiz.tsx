@@ -1,6 +1,5 @@
-// Import necessary assets and styles
-import errorIcon from "/assets/images/icon-error.svg"; // Icon for incorrect answers or errors
-import successIcon from "/assets/images/icon-correct.svg"; // Icon for correct answers
+import errorIcon from "../../assets/images/icon-error.svg"; // Icon for incorrect answers or errors
+import successIcon from "../../assets/images/icon-correct.svg"; // Icon for correct answers; // Icon for correct answers
 import "./quiz.css"; // Import specific styles for the Quiz component
 
 // Define the prop types for the Quiz component

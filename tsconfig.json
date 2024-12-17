@@ -1,6 +1,9 @@
 {
   "files": [],
   "references": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/jest.d.ts" ,
     {
       "path": "./tsconfig.app.json"
     },

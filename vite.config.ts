@@ -1,8 +1,14 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vitest/config";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: "/",
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./setupTests.ts",
+    // Add module name mapping for static assets
+    alias: {
+      // Mock SVG imports
+      ".*\\.(svg|png|jpg|jpeg|gif)$": "__mocks__/fileMock.ts",
+    },
+  },
 });

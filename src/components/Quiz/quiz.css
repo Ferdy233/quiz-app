@@ -1,0 +1,121 @@
+.answers,
+.answer,
+.error--message {
+  display: flex;
+}
+
+.answers {
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.answer,
+.error--message {
+  gap: 1rem;
+}
+
+.answer {
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.answer__text,
+.question {
+  color: var(--navy-blue);
+}
+
+.question,
+.progress-bar-background {
+  margin-bottom: 2.5rem;
+}
+
+.answer__order {
+  color: #626c7f;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background-color: var(--light-grey);
+}
+
+.question--position,
+.error--message {
+  color: var(--grey);
+}
+
+.question--position {
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar-background,
+.progress-bar {
+  height: 8px;
+}
+
+.progress-bar-background {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.progress-bar {
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.answer__correct-img,
+.answer__incorrect-img {
+  display: none;
+}
+
+.answer--correct > .answer__correct-img,
+.answer--picked--correct > .answer__correct-img,
+.answer--incorrect > .answer__incorrect-img {
+  display: block;
+  margin-left: auto;
+}
+
+.answer-hover:hover > .answer__order {
+  background-color: var(--accessibility);
+}
+
+.progress-bar,
+.answer--selected > .answer__order,
+.answer--selected:hover > .answer__order {
+  background-color: var(--purple);
+}
+
+.answer--selected {
+  border: 4px solid var(--purple);
+}
+
+.answer--selected > .answer__order,
+.answer--picked--correct > .answer__order,
+.answer--incorrect > .answer__order {
+  color: #ffffff;
+}
+
+.answer--picked--correct {
+  border: 4px solid var(--green);
+}
+
+.answer--picked--correct > .answer__order {
+  background-color: var(--green);
+}
+
+.answer--incorrect {
+  border: 4px solid var(--red);
+}
+
+.answer--incorrect > .answer__order,
+.answer--incorrect:hover > .answer__order {
+  background-color: var(--red);
+}
+
+.error--message {
+  justify-content: center;
+}

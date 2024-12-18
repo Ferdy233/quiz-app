@@ -1,4 +1,5 @@
 // src/QuizApp.tsx
+// import React from "react";
 import { useState } from "react";
 import Quiz from "./Quiz/Quiz";
 import QuizResults from "./QuizResults/QuizResults";

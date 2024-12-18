@@ -1,3 +1,4 @@
+// import React from "react";
 import { Topic } from "../../types";
 import "./quizresults.css";
 
